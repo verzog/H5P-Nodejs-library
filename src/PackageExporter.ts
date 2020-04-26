@@ -26,8 +26,8 @@ export default class PackageExporter {
      * @param contentStorage (optional) Only needed if you want to use the PackageExporter to copy content from a package (e.g. Upload option in the editor)
      */
     constructor(
-        private libraryStorage: ILibraryStorage,
-        private contentStorage: IContentStorage = null
+        protected libraryStorage: ILibraryStorage,
+        protected contentStorage: IContentStorage = null
     ) {
         log.info(`initialize`);
     }
@@ -133,7 +133,7 @@ export default class PackageExporter {
      * Checks if a piece of content exists and if the user has download permissions for it.
      * Throws an exception with the respective error message if this is not the case.
      */
-    private async checkAccess(
+    protected async checkAccess(
         contentId: ContentId,
         user: IUser
     ): Promise<void> {

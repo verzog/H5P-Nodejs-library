@@ -5,6 +5,7 @@ import H5pError from './helpers/H5pError';
 import InstalledLibrary from './InstalledLibrary';
 import LibraryName from './LibraryName';
 import PackageExporter from './PackageExporter';
+import HtmlPackageExporter from './HtmlPackageExporter';
 
 import H5PConfig from './implementation/H5PConfig';
 import fs from './implementation/fs';
@@ -61,6 +62,7 @@ export {
     InstalledLibrary,
     LibraryName,
     PackageExporter,
+    HtmlPackageExporter,
     // interfaces
     ContentId,
     ContentParameters,

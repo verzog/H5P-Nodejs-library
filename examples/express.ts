@@ -99,7 +99,17 @@ const start = async () => {
         )
     );
 
-    server.use(h5pEditor.config.baseUrl, expressRoutes(h5pEditor, h5pPlayer));
+    const htmlExporter = new H5P.HtmlPackageExporter(
+        h5pEditor.libraryStorage,
+        h5pEditor.contentStorage,
+        h5pEditor.config,
+        server
+    );
+
+    server.use(
+        h5pEditor.config.baseUrl,
+        expressRoutes(h5pEditor, h5pPlayer, htmlExporter)
+    );
 
     server.get('/', startPageRenderer(h5pEditor));
 

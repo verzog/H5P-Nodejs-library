@@ -4,7 +4,8 @@ import * as H5P from '../src';
 
 export default function (
     h5pEditor: H5P.H5PEditor,
-    h5pPlayer: H5P.H5PPlayer
+    h5pPlayer: H5P.H5PPlayer,
+    htmlExporter: H5P.HtmlPackageExporter
 ): express.Router {
     const router = express.Router();
 
@@ -80,6 +81,15 @@ export default function (
         res.send(
             `Content ${req.params.contentId} successfully deleted.<br/><a href="javascript:window.location=document.referrer">Go Back</a>`
         );
+        res.status(200).end();
+    });
+
+    router.get('/htmlExport/:contentId', async (req, res) => {
+        const page = await htmlExporter.exportToHtml(
+            req.params.contentId,
+            req.user
+        );
+        res.send(page);
         res.status(200).end();
     });
 
